@@ -7,7 +7,7 @@
 <meta name="description" content="パタゴニア、ザ・ノースフェイス、フェールラーベン、コロンビア。キャンプ中も身につけたままでいられる、340g以下のコンパクトバッグを集めました。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@500;700;900&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     /* 秋の夕方のキャンプ場 */
@@ -28,15 +28,15 @@
   html{scroll-behavior:smooth;}
   body{
     background:var(--paper); color:var(--ink);
-    font-family:'Zen Maru Gothic', sans-serif; font-weight:500;
-    line-height:1.85; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    font-family:'Noto Sans JP', sans-serif; font-weight:500;
+    line-height:1.9; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
   h1,h2,h3{word-break:keep-all; overflow-wrap:anywhere; font-weight:400;}
   p{line-break:strict; overflow-wrap:anywhere;}
   img{display:block; max-width:100%;}
   a{color:inherit;}
-  .dela{font-family:'Dela Gothic One', sans-serif;}
-  .en{font-family:'Bricolage Grotesque', sans-serif; font-weight:800;}
+  .dela{font-family:'Noto Sans JP', sans-serif;}
+  .en{font-family:'Outfit', sans-serif; font-weight:800;}
   .sp{display:inline;} .pc{display:none;}
   @media (min-width:880px){ .sp{display:none;} .pc{display:inline;} }
 
@@ -63,14 +63,14 @@
   .topbar{background:var(--sky); display:flex; align-items:center; justify-content:space-between; padding:14px 18px;}
   @media (min-width:880px){ .topbar{padding:18px 48px;} }
   .topbar .shop{font-weight:900; font-size:14px; text-decoration:none;}
-  .topbar .tag{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:13px; letter-spacing:.12em; color:var(--orange);}
+  .topbar .tag{font-family:'Outfit', sans-serif; font-weight:800; font-size:13px; letter-spacing:.12em; color:var(--orange);}
 
   /* ===== FV ===== */
   .fv{position:relative; background:var(--sky); overflow:hidden;}
   .fv-copy{position:relative; z-index:3; padding:26px 20px 0;}
   @media (min-width:880px){ .fv-copy{padding:56px 0 0 8%; max-width:720px;} }
-  .fv-copy .label{display:inline-block; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:14px; letter-spacing:.1em; color:var(--paper); background:var(--orange); padding:4px 12px; border-radius:6px; transform:rotate(-2deg);}
-  .fv-copy h1{margin-top:18px; font-family:'Dela Gothic One', sans-serif; font-size:clamp(44px, 7.2vw, 92px); line-height:1.22; color:var(--navy); letter-spacing:.01em;}
+  .fv-copy .label{display:inline-block; font-family:'Outfit', sans-serif; font-weight:800; font-size:14px; letter-spacing:.1em; color:var(--paper); background:var(--orange); padding:4px 12px; border-radius:6px; transform:rotate(-2deg);}
+  .fv-copy h1{margin-top:18px; font-family:'Noto Sans JP', sans-serif; font-weight:900; font-size:clamp(44px, 7.2vw, 92px); line-height:1.22; color:var(--navy); letter-spacing:.01em;}
   .fv-copy h1 em{font-style:normal; color:var(--orange);}
   .fv-copy .sub{margin-top:16px; font-weight:900; font-size:clamp(16px,1.8vw,20px); color:var(--teal);}
 
@@ -108,13 +108,13 @@
   }
   .tagbig .hole{position:absolute; left:50%; top:16px; width:18px; height:18px; margin-left:-9px; border-radius:50%; background:var(--navy);}
   .tagbig .s1{font-weight:900; font-size:16px;}
-  .tagbig .s2{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:84px; line-height:1;}
+  .tagbig .s2{font-family:'Outfit', sans-serif; font-weight:800; font-size:84px; line-height:1;}
   .tagbig .s2 small{font-size:32px;}
   .tagbig .s3{margin-top:6px; font-weight:900; font-size:15px; line-height:1.6;}
 
   /* ===== LINE UP ===== */
   .lineup{padding:96px 16px 100px; text-align:center;}
-  .sec-en{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:clamp(48px, 7.4vw, 84px); line-height:1; letter-spacing:-.02em; color:var(--navy);}
+  .sec-en{font-family:'Outfit', sans-serif; font-weight:800; font-size:clamp(48px, 7.4vw, 84px); line-height:1; letter-spacing:-.02em; color:var(--navy);}
   .lineup .lead{margin-top:20px; font-weight:900; font-size:clamp(18px,2.1vw,23px); line-height:1.9;}
   .tags{margin:52px auto 0; max-width:960px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
   @media (min-width:880px){ .tags{gap:32px;} }
@@ -129,7 +129,7 @@
   .ltag .card::before{content:""; position:absolute; top:12px; left:50%; width:14px; height:14px; margin-left:-7px; border-radius:50%; border:3px solid var(--navy); background:var(--paper);}
   .ltag .img{width:100%; aspect-ratio:3/3.6; overflow:hidden; border-radius:999px 999px 10px 10px; background:var(--sky);}
   .ltag .img img{width:100%; height:100%; object-fit:cover;}
-  .ltag .t{margin-top:4px; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:clamp(15px,2.2vw,28px); line-height:1.05;}
+  .ltag .t{margin-top:4px; font-family:'Outfit', sans-serif; font-weight:800; font-size:clamp(15px,2.2vw,28px); line-height:1.05;}
   .ltag .j{font-weight:900; font-size:clamp(11px,1.3vw,15px); color:var(--orange); line-height:1.3;}
   .ltag .go{margin-top:12px; display:block; font-weight:900; font-size:13px; color:var(--ink-2);}
   .ltag .go::after{content:""; display:block; width:10px; height:10px; margin:4px auto 0; border-right:3px solid var(--orange); border-bottom:3px solid var(--orange); transform:rotate(45deg);}
@@ -152,8 +152,8 @@
   }
   .item .visual{position:relative; max-width:440px; margin:0 auto; width:100%;}
   .item-no{display:flex; align-items:baseline; gap:6px; margin:0 0 12px 4px; color:var(--navy); line-height:.9;}
-  .item-no .k{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:22px;}
-  .item-no .n{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:80px; letter-spacing:-.03em;}
+  .item-no .k{font-family:'Outfit', sans-serif; font-weight:800; font-size:22px;}
+  .item-no .n{font-family:'Outfit', sans-serif; font-weight:800; font-size:80px; letter-spacing:-.03em;}
   .item-no .n::after{content:""; display:inline-block; width:12px; height:12px; border-radius:50%; background:var(--orange); margin-left:4px;}
   .item .photo{display:block; overflow:hidden; background:#fff; aspect-ratio:1/1.12; border-radius:999px 999px 18px 18px; border:4px solid var(--navy);}
   .item .photo img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
@@ -168,7 +168,7 @@
   }
   .item .wt .b::before{content:""; position:absolute; top:7px; left:50%; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:var(--paper);}
   .item .wt .w1{font-size:11px; font-weight:900; line-height:1.2;}
-  .item .wt .w2{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:34px; line-height:1;}
+  .item .wt .w2{font-family:'Outfit', sans-serif; font-weight:800; font-size:34px; line-height:1;}
   .item .wt .w2 small{font-size:16px;}
   .labels{position:absolute; left:-8px; bottom:-22px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; z-index:2;}
   .lbl{background:var(--mustard); color:var(--navy); font-weight:900; font-size:14px; line-height:1.45; padding:7px 14px; border:2px solid var(--navy); border-radius:6px;}
@@ -177,12 +177,12 @@
 
   .item .body{margin-top:58px;}
   @media (min-width:880px){ .item .body{margin-top:0;} }
-  .item .brand{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:16px; letter-spacing:.06em; color:var(--teal-2);}
-  .item h3{margin-top:10px; font-family:'Dela Gothic One', sans-serif; font-size:clamp(23px, 2.6vw, 30px); line-height:1.6; color:var(--navy);}
+  .item .brand{font-family:'Outfit', sans-serif; font-weight:800; font-size:16px; letter-spacing:.06em; color:var(--teal-2);}
+  .item h3{margin-top:10px; font-family:'Noto Sans JP', sans-serif; font-weight:900; font-size:clamp(23px, 2.6vw, 30px); line-height:1.6; color:var(--navy);}
   .item h3 span{background:linear-gradient(transparent 62%, rgba(237,182,70,.65) 62%, rgba(237,182,70,.65) 92%, transparent 92%);}
   .item .name{margin-top:18px; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; font-weight:900; font-size:clamp(16px,1.8vw,18px); color:var(--ink-2);}
-  .item .name b{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:26px; color:var(--ink);}
-  .item .name b small{font-family:'Zen Maru Gothic', sans-serif; font-size:14px; margin-left:2px;}
+  .item .name b{font-family:'Outfit', sans-serif; font-weight:800; font-size:26px; color:var(--ink);}
+  .item .name b small{font-family:'Noto Sans JP', sans-serif; font-size:14px; margin-left:2px;}
   .item .desc{margin-top:12px; font-size:16px; line-height:1.95;}
   .item .spec{margin-top:8px; font-size:14px; color:var(--ink-2);}
   .item .btn{margin-top:26px;}
@@ -197,7 +197,7 @@
   .night .inner{position:relative; max-width:980px; margin:0 auto;}
   .night .sec-en{color:var(--paper);}
   .night .ja{margin-top:12px; font-weight:900; font-size:clamp(18px,2vw,22px); color:var(--lume);}
-  .night h2{margin-top:34px; font-family:'Dela Gothic One', sans-serif; font-size:clamp(28px, 4.4vw, 48px); line-height:1.55;}
+  .night h2{margin-top:34px; font-family:'Noto Sans JP', sans-serif; font-weight:900; font-size:clamp(28px, 4.4vw, 48px); line-height:1.55;}
   .night h2 span{color:var(--lume);}
   .night p.body{margin-top:22px; font-size:clamp(16px,1.6vw,18px); line-height:2.05; color:#C9D2D3;}
   .lm-card{
@@ -210,7 +210,7 @@
   .lm-card:hover .img img{transform:scale(1.04);}
   .lm-card .txt{padding:28px 22px 34px; display:flex; flex-direction:column; justify-content:center; align-items:center;}
   @media (min-width:880px){ .lm-card .txt{align-items:flex-start; padding:36px 40px;} }
-  .lm-card .t{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:40px; letter-spacing:.04em; line-height:1;}
+  .lm-card .t{font-family:'Outfit', sans-serif; font-weight:800; font-size:40px; letter-spacing:.04em; line-height:1;}
   .lm-card .s{margin-top:12px; font-size:15px; color:#C9D2D3;}
   .lm-card .btn{margin-top:24px; background:var(--lume); color:var(--night); border-color:var(--lume); box-shadow:5px 5px 0 #4D8682;}
   .lm-card:hover .btn{transform:translate(3px,3px); box-shadow:2px 2px 0 #4D8682;}
