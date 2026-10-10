@@ -102,20 +102,10 @@
   .intro{background:var(--navy); color:var(--paper); padding:30px 20px 100px; text-align:center;}
   @media (min-width:880px){ .intro{padding:20px 20px 120px;} }
   .intro p{font-size:clamp(16px,1.7vw,18px); line-height:2.1;}
-  /* ヒップバッグ型の重さ表示 */
-  .bagbig{position:relative; width:270px; margin:64px auto 0; padding:0 0 6px;}
+  /* 重さ表示 */
+  .bagbig{width:280px; margin:56px auto 0;}
   @media (min-width:880px){ .bagbig{width:340px;} }
-  .bagbig .belt{position:absolute; left:-34px; right:-34px; top:42%; height:24px; background:var(--teal-2); border-radius:6px;}
-  @media (min-width:880px){ .bagbig .belt{left:-90px; right:-90px; height:28px;} }
-  .bagbig .buckle{position:absolute; right:-30px; top:calc(42% - 6px); width:34px; height:36px; border-radius:6px; background:var(--navy); border:4px solid var(--teal-2);}
-  @media (min-width:880px){ .bagbig .buckle{right:-52px; top:calc(42% - 5px); height:38px;} }
-  .bagbig .body{
-    position:relative; z-index:1; background:var(--mustard); color:var(--navy);
-    border-radius:110px 110px 90px 90px; padding:54px 20px 36px; text-align:center;
-  }
-  @media (min-width:880px){ .bagbig .body{padding:64px 24px 42px;} }
-  .bagbig .zip{position:absolute; left:34px; right:34px; top:22px; height:40px; border-top:3px dashed var(--navy); border-radius:50% 50% 0 0 / 100% 100% 0 0; opacity:.75;}
-  .bagbig .pull{position:absolute; right:58px; top:16px; width:12px; height:26px; border-radius:6px; background:var(--navy);}
+  .bagbig .body{background:var(--mustard); color:var(--navy); border-radius:16px; padding:32px 20px 30px; text-align:center;}
   .bagbig .s1{font-weight:900; font-size:15px;}
   .bagbig .s2{font-family:'Outfit', sans-serif; font-weight:800; font-size:80px; line-height:1; margin-top:4px;}
   .bagbig .s2 small{font-size:30px;}
@@ -269,8 +259,7 @@
   <section class="intro">
     <p class="reveal">テントを張ったら、<br class="sp">大きな荷物は置いていく。<br>スマホと鍵と、ちょっとの小物だけ<br class="sp">身につけて歩く。<br>キャンプ中ずっと着けていられる、<br class="sp">小さめのボディバッグ・<br class="sp">ウエストバッグを集めました。</p>
     <div class="bagbig" aria-label="今回のバッグは、どれも340g以下。缶ジュース1本より軽い">
-      <span class="belt" aria-hidden="true"></span><span class="buckle" aria-hidden="true"></span>
-      <div class="body"><span class="zip" aria-hidden="true"></span><span class="pull" aria-hidden="true"></span>
+      <div class="body">
         <p class="s1">今回のバッグは、どれも</p>
         <p class="s2">340<small>g</small></p>
         <p class="s3">以下。<br>缶ジュース1本より軽い！</p>
