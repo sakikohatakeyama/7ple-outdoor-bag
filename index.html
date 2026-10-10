@@ -7,180 +7,237 @@
 <meta name="description" content="パタゴニア、ザ・ノースフェイス、フェールラーベン、コロンビア。キャンプ中も身につけたままでいられる、340g以下のコンパクトバッグを集めました。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Saira+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gabarito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#ECE7DC;      /* テント生地のような生成り */
-    --canvas-deep:#E1DACB;
-    --ink:#1D2520;         /* 森の深緑がかった黒 */
-    --ink-soft:#5B635C;
-    --moss:#3E5A45;
-    --ember:#C4561E;       /* 焚き火の色：重さの目盛りだけに使う */
-    --line:#CFC6B3;
-    --night:#0E1311;
-    --night-2:#161D1A;
-    --lume:#C6EE6A;        /* ルミノックスの夜光色 */
+    --olive:#5D6739;
+    --olive-dk:#4C552C;
+    --olive-sh:#535D31;   /* イラストのシルエット */
+    --cream:#F3EBD0;
+    --cream-2:#E7DDB8;
+    --brown:#4E3A1F;
+    --brown-2:#7A6545;
+    --night:#23281A;
+    --night-2:#2E3522;
+    --lume:#D9F07C;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--canvas);
-    color:var(--ink);
-    font-family:'Zen Kaku Gothic New', sans-serif;
-    font-weight:500;
-    line-height:1.85;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    background:var(--cream); color:var(--brown);
+    font-family:'Zen Maru Gothic', sans-serif; font-weight:500;
+    line-height:1.85; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
   h1,h2,h3{word-break:keep-all; overflow-wrap:anywhere;}
   p{line-break:strict; overflow-wrap:anywhere;}
   img{display:block; max-width:100%;}
   a{color:inherit;}
-  .num{font-family:'Saira Condensed', sans-serif;}
+  .en{font-family:'Gabarito', sans-serif;}
   .sp{display:inline;} .pc{display:none;}
   @media (min-width:880px){ .sp{display:none;} .pc{display:inline;} }
 
-  .wrap{max-width:1180px; margin:0 auto; padding:0 20px;}
-  @media (min-width:880px){ .wrap{padding:0 64px;} }
+  /* ドット地（参考：布やキャンバスのような質感） */
+  .dots-cream{background-color:var(--cream); background-image:radial-gradient(rgba(93,103,57,.16) 1.2px, transparent 1.3px); background-size:9px 9px;}
+  .dots-olive{background-color:var(--olive); background-image:radial-gradient(rgba(243,235,208,.22) 1.2px, transparent 1.3px); background-size:8px 8px;}
 
   /* ===== reveal ===== */
-  .reveal{opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s ease;}
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.3,1);}
   .reveal.is-visible{opacity:1; transform:none;}
-  @media (prefers-reduced-motion: reduce){
-    .reveal{opacity:1; transform:none; transition:none;}
-  }
+  .pop{opacity:0; transform:scale(.6); transition:opacity .6s ease, transform .7s cubic-bezier(.3,1.5,.5,1);}
+  .pop.is-visible{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){ .reveal,.pop{opacity:1; transform:none; transition:none;} }
 
-  /* ===== top bar ===== */
-  .topbar{display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-bottom:1px solid var(--line);}
-  @media (min-width:880px){ .topbar{padding:22px 64px;} }
-  .topbar .shop{font-size:13px; font-weight:700; letter-spacing:.06em; text-decoration:none;}
-  .topbar .tag{font-family:'Saira Condensed', sans-serif; font-weight:600; font-size:14px; letter-spacing:.2em; color:var(--ink-soft);}
+  /* ===== header ===== */
+  .topbar{position:relative; z-index:5; background:var(--cream); display:flex; align-items:center; justify-content:space-between; padding:14px 18px;}
+  @media (min-width:880px){ .topbar{padding:18px 48px;} }
+  .topbar .shop{font-weight:900; font-size:14px; text-decoration:none; letter-spacing:.04em;}
+  .topbar .tag{font-family:'Gabarito', sans-serif; font-weight:800; font-size:13px; letter-spacing:.14em; color:var(--olive);}
 
   /* ===== FV ===== */
-  .fv{padding:40px 0 72px;}
-  @media (min-width:880px){ .fv{padding:72px 0 120px;} }
-  .fv-grid{display:grid; gap:0; grid-template-areas:"head" "photos" "lead";}
-  .fv-head{grid-area:head;} .fv-photos{grid-area:photos; margin-top:32px;} .fv-lead{grid-area:lead;}
+  .fv{position:relative; background:var(--olive); overflow:hidden; height:720px;}
+  @media (min-width:880px){ .fv{height:820px;} }
+  .fv-illust{position:absolute; inset:0; width:100%; height:100%;}
+  .fv-illust .s{fill:var(--olive-sh);}
+  .fv-illust .l{fill:none; stroke:var(--olive-sh); stroke-width:3; stroke-linecap:round;}
+  .bubble-photo{
+    position:absolute; border-radius:50%; overflow:hidden; background:var(--cream);
+    border:5px solid var(--cream); outline:2px dashed var(--cream); outline-offset:5px;
+  }
+  .bubble-photo img{width:100%; height:100%; object-fit:cover;}
+  .bubble-photo.b1{width:150px; height:150px; left:6%;  top:150px;}
+  .bubble-photo.b2{width:118px; height:118px; right:7%; top:56px;}
+  .bubble-photo.b3{width:124px; height:124px; right:9%; top:290px;}
+  .bubble-photo.b4{width:96px;  height:96px;  left:34%; top:38px;}
+  .bubble-photo.b5{display:none;}
   @media (min-width:880px){
-    .fv-grid{grid-template-columns:.9fr 1.15fr; column-gap:56px; grid-template-areas:"head photos" "lead photos"; align-items:end;}
-    .fv-photos{margin-top:0;}
-    .fv-lead{align-self:start;}
+    .bubble-photo.b1{width:270px; height:270px; left:8%;  top:170px;}
+    .bubble-photo.b2{width:210px; height:210px; right:12%; top:50px;}
+    .bubble-photo.b3{width:230px; height:230px; right:5%;  top:310px;}
+    .bubble-photo.b4{width:170px; height:170px; left:30%; top:40px;}
+    .bubble-photo.b5{display:block; width:150px; height:150px; left:56%; top:230px;}
   }
-  .fv-kicker{
-    display:inline-block; font-size:14px; font-weight:700; letter-spacing:.1em;
-    color:var(--moss); padding-bottom:6px; border-bottom:2px solid var(--moss); margin-bottom:26px;
-  }
-  .fv-title{
-    font-weight:900; font-size:clamp(46px, 11.5vw, 104px); line-height:1.16; letter-spacing:-.01em;
-  }
-  .fv-title .soft{color:var(--moss);}
-  .fv-lead{margin-top:28px; font-size:clamp(16px, 1.7vw, 19px); line-height:2; max-width:26em;}
-  .fv-photos{display:grid; grid-template-columns:1.25fr 1fr; grid-template-rows:auto auto; gap:10px;}
-  .fv-photos figure{overflow:hidden; background:var(--canvas-deep);}
-  .fv-photos img{width:100%; height:100%; object-fit:cover; transform:scale(1.2); transform-origin:50% 100%;}
-  .fv-photos .p1{grid-row:1 / span 2; aspect-ratio:3/4.4;}
-  .fv-photos .p1 img{object-position:50% 70%;}
-  .fv-photos .p2, .fv-photos .p3{aspect-ratio:1/1.08;}
-  .fv-photos .p2 img{object-position:50% 80%;}
-  .fv-photos .p3 img{object-position:50% 80%;}
-  @media (min-width:880px){ .fv-photos{margin-bottom:8px;} }
+  .bubble-photo.b1 img{object-position:50% 75%;}
+  .float{animation:float 5.5s ease-in-out infinite;}
+  .float.d2{animation-delay:-1.4s;} .float.d3{animation-delay:-2.8s;} .float.d4{animation-delay:-4s;}
+  @keyframes float{0%,100%{translate:0 0;} 50%{translate:0 -8px;}}
+  @media (prefers-reduced-motion: reduce){ .float{animation:none;} }
 
-  /* ===== statement ===== */
-  .statement{background:var(--ink); color:var(--canvas); padding:88px 0 96px;}
-  @media (min-width:880px){ .statement{padding:140px 0 150px;} }
-  .statement .label{font-size:15px; font-weight:700; letter-spacing:.08em; color:#A9B3AA;}
-  .statement .big{
-    margin-top:14px; font-weight:900; font-size:clamp(34px, 7.4vw, 76px); line-height:1.3;
+  .hill{
+    position:absolute; left:50%; bottom:-520px; transform:translateX(-50%);
+    width:1500px; height:820px; border-radius:50%; background:var(--olive-dk);
   }
-  .statement .big .num{font-weight:700; font-size:1.55em; line-height:1; color:#F1EDE4; letter-spacing:.01em;}
-  .statement p.body{margin-top:32px; font-size:clamp(16px, 1.6vw, 18px); line-height:2.05; max-width:34em; color:#D5D9D3;}
-  .compare{margin-top:56px; display:grid; gap:18px; max-width:760px;}
-  .compare-row{display:grid; grid-template-columns:8.6em 1fr 4em; align-items:center; gap:12px; font-size:14px; white-space:nowrap;}
-  @media (min-width:880px){ .compare-row{grid-template-columns:9em 1fr 4.6em; gap:18px; font-size:16px;} }
-  .compare-bar{height:10px; background:#2C3631; position:relative;}
-  .compare-bar span{position:absolute; inset:0 auto 0 0; background:#E9E4D8;}
-  .compare-row.can .compare-bar span{background:var(--ember);}
-  .compare-row .g{font-family:'Saira Condensed', sans-serif; font-weight:600; font-size:20px; text-align:right;}
-  .compare-note{margin-top:18px; font-size:13px; color:#8E9890;}
+  @media (max-width:879px){ .hill{width:900px; height:640px; bottom:-410px;} }
+  .fv-copy{position:absolute; left:0; right:0; bottom:46px; text-align:center; color:var(--cream); padding:0 16px;}
+  @media (min-width:880px){ .fv-copy{bottom:64px;} }
+  .fv-copy .en{font-weight:800; font-size:clamp(18px, 2.2vw, 24px); letter-spacing:.06em; color:var(--cream-2); opacity:.85;}
+  .fv-copy h1{margin-top:6px; font-weight:900; font-size:clamp(40px, 6.4vw, 72px); line-height:1.3; letter-spacing:.02em;}
+  .fv-copy .sub{margin-top:14px; display:inline-block; font-weight:700; font-size:clamp(15px,1.7vw,18px); background:var(--cream); color:var(--olive-dk); padding:6px 18px; border-radius:999px;}
 
-  /* ===== list head ===== */
-  .list-head{padding:96px 0 40px;}
-  @media (min-width:880px){ .list-head{padding:140px 0 56px; display:flex; justify-content:space-between; align-items:end; gap:40px;} }
-  .list-head h2{font-weight:900; font-size:clamp(32px, 5.6vw, 58px); line-height:1.3;}
-  .list-head p{margin-top:18px; font-size:16px; color:var(--ink-soft); max-width:22em;}
-  @media (min-width:880px){ .list-head p{margin-top:0; text-align:right;} }
-
-  /* ===== scale list ===== */
-  .scale{position:relative; padding-bottom:120px;}
-  .item{
-    position:relative; display:grid; gap:22px;
-    padding:44px 0 52px; border-top:1px solid var(--line);
+  /* ===== intro ===== */
+  .intro{background:var(--olive-dk); color:var(--cream); text-align:center; padding:28px 20px 96px;}
+  @media (min-width:880px){ .intro{padding:30px 20px 120px;} }
+  .intro p{font-size:clamp(16px,1.7vw,18px); line-height:2.1;}
+  .weight-badge{
+    margin:44px auto 0; width:240px; height:240px; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--olive-dk); border:3px dashed var(--olive-dk); outline:6px solid var(--cream); outline-offset:-1px;
   }
-  .item:last-child{border-bottom:1px solid var(--line);}
+  @media (min-width:880px){ .weight-badge{width:280px; height:280px;} }
+  .weight-badge .s1{font-weight:900; font-size:16px;}
+  .weight-badge .s2{font-family:'Gabarito', sans-serif; font-weight:900; font-size:76px; line-height:1;}
+  .weight-badge .s2 small{font-size:30px; margin-left:2px;}
+  .weight-badge .s3{font-weight:700; font-size:14px; margin-top:6px; line-height:1.5;}
+  @media (min-width:880px){ .weight-badge .s2{font-size:92px;} }
+
+  /* ===== LINE UP ===== */
+  .lineup{background:var(--olive); color:var(--cream); text-align:center; padding:84px 16px 96px; position:relative;}
+  .lineup .ico{width:64px; height:44px; margin:0 auto 10px; display:block;}
+  .sec-en{font-family:'Gabarito', sans-serif; font-weight:900; font-size:clamp(46px, 7vw, 76px); line-height:1; letter-spacing:.01em;}
+  .lineup .lead{margin-top:24px; font-weight:900; font-size:clamp(18px, 2.2vw, 24px); line-height:2;}
+  .lineup .lead span{border-bottom:3px dotted var(--cream-2); padding-bottom:2px;}
+  .tabs{margin:44px auto 0; display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; max-width:900px;}
+  @media (min-width:880px){ .tabs{gap:24px;} }
+  .tab{display:flex; flex-direction:column; align-items:center; text-decoration:none; color:var(--olive-dk);}
+  .tab .card{
+    width:100%; border-radius:40px 40px 24px 24px; padding:16px 8px 14px;
+    display:flex; flex-direction:column; align-items:center; gap:10px; transition:transform .3s ease;
+  }
+  @media (min-width:880px){ .tab .card{border-radius:80px 80px 36px 36px; padding:28px 18px 24px;} }
+  .tab:hover .card{transform:translateY(-6px);}
+  .tab .t{font-family:'Gabarito', sans-serif; font-weight:900; font-size:clamp(17px, 2.4vw, 30px); line-height:1.05;}
+  .tab .j{font-weight:700; font-size:clamp(12px,1.3vw,15px); color:var(--brown-2); line-height:1.3;}
+  .tab .img{width:82%; aspect-ratio:1; border-radius:50%; overflow:hidden; background:#fff;}
+  .tab .img img{width:100%; height:100%; object-fit:cover;}
+  .tab .arrow{margin-top:14px; width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-top:14px solid var(--cream);}
+
+  /* ===== section head ===== */
+  .sec{padding:96px 16px 40px;}
+  @media (min-width:880px){ .sec{padding:130px 40px 60px;} }
+  .sec-head{text-align:center; color:var(--olive);}
+  .sec-head .ja{margin-top:14px; display:inline-flex; align-items:center; gap:12px; font-weight:900; font-size:clamp(18px,2vw,22px); color:var(--brown-2);}
+  .sec-head .ja svg{width:28px; height:28px;}
+  .sec-head .hint{margin-top:14px; font-size:15px; color:var(--brown-2);}
+
+  /* ===== item ===== */
+  .items{max-width:1080px; margin:0 auto;}
+  .item{position:relative; padding:56px 0 40px;}
   @media (min-width:880px){
-    .item{grid-template-columns:200px 340px 1fr; gap:48px; padding:56px 0; align-items:start;}
+    .item{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding:90px 0 50px;}
+    .item:nth-child(even) .visual{order:2;}
   }
-  .item .weight{display:flex; align-items:baseline; gap:6px; line-height:1;}
-  .item .weight b{font-family:'Saira Condensed', sans-serif; font-weight:700; font-size:clamp(72px, 19vw, 112px); letter-spacing:-.01em;}
-  .item .weight small{font-family:'Saira Condensed', sans-serif; font-weight:600; font-size:28px;}
-  .item .tick{margin-top:14px; height:6px; background:var(--canvas-deep); width:100%; max-width:200px;}
-  .item .tick span{display:block; height:100%; background:var(--ember);}
-  .item .meta{margin-top:12px; font-size:14px; color:var(--ink-soft); line-height:1.7;}
-  .item .photo{aspect-ratio:1/1; background:#fff; overflow:hidden;}
-  .item .photo img{width:100%; height:100%; object-fit:cover;}
-  @media (max-width:879px){ .item .photo{max-width:420px;} }
-  .item .brand{font-family:'Saira Condensed', sans-serif; font-weight:600; font-size:15px; letter-spacing:.16em; color:var(--moss); text-transform:uppercase;}
-  .item h3{margin-top:6px; font-weight:900; font-size:clamp(22px, 2.4vw, 28px); line-height:1.45;}
-  .item .catch{margin-top:20px; font-weight:700; font-size:clamp(19px, 2vw, 22px); line-height:1.7;}
-  .item .desc{margin-top:12px; font-size:16px; line-height:1.95;}
-  .item .foot{margin-top:28px; display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px;}
-  .item .price{font-family:'Saira Condensed', sans-serif; font-weight:700; font-size:34px; line-height:1;}
-  .item .price em{font-style:normal; font-family:'Zen Kaku Gothic New', sans-serif; font-size:15px; font-weight:700; margin-left:3px;}
+  .item .visual{position:relative; max-width:460px; margin:0 auto; width:100%;}
+  .item-no{display:flex; align-items:baseline; gap:8px; margin:0 0 14px 4px; color:var(--olive); line-height:.9;}
+  .item-no .k{font-family:'Gabarito', sans-serif; font-weight:900; font-size:22px; letter-spacing:.06em;}
+  .item-no .n{font-family:'Gabarito', sans-serif; font-weight:900; font-size:76px;}
+  @media (min-width:880px){ .item-no .n{font-size:88px;} }
+  .item .photo{display:block; border-radius:28px; overflow:hidden; background:#fff; aspect-ratio:1; box-shadow:0 0 0 6px var(--cream), 0 0 0 8px var(--cream-2);}
+  .item .photo img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
+  .item .photo:hover img{transform:scale(1.04);}
+  .item .wt{
+    position:absolute; right:-6px; top:40px; width:104px; height:104px; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--cream); z-index:2;
+  }
+  .item .wt .w1{font-size:12px; font-weight:700; line-height:1;}
+  .item .wt .w2{font-family:'Gabarito', sans-serif; font-weight:900; font-size:36px; line-height:1;}
+  .item .wt .w2 small{font-size:17px; margin-left:1px;}
+  @media (min-width:880px){ .item .wt{width:120px; height:120px; right:-24px; top:50px;} .item .wt .w2{font-size:42px;} }
+  .notes{position:absolute; left:-8px; right:-8px; bottom:-26px; display:flex; justify-content:space-between; gap:8px; pointer-events:none;}
+  .note{
+    position:relative; background:var(--cream); color:var(--brown); font-weight:900; font-size:14px; line-height:1.5;
+    padding:10px 16px; border-radius:16px; border:2px solid var(--brown); max-width:56%;
+  }
+  .note::after{content:""; position:absolute; bottom:-10px; left:26px; width:14px; height:14px; background:var(--cream); border-right:2px solid var(--brown); border-bottom:2px solid var(--brown); transform:rotate(45deg) skew(8deg,8deg);}
+  .note.r{align-self:flex-end; margin-bottom:-18px;}
+  .note.r::after{left:auto; right:26px;}
+  @media (min-width:880px){ .note{font-size:15px; padding:12px 18px;} }
+
+  .item .body{margin-top:64px; text-align:center;}
+  @media (min-width:880px){ .item .body{margin-top:0; text-align:left;} }
+  .item .brand{font-family:'Gabarito', sans-serif; font-weight:800; font-size:16px; letter-spacing:.1em; color:var(--olive);}
+  .item h3{margin-top:10px; font-weight:900; font-size:clamp(22px, 2.6vw, 28px); line-height:1.75; color:var(--olive-dk);}
+  .item h3 span{background-image:radial-gradient(circle, var(--olive) 1.4px, transparent 1.6px); background-size:7px 4px; background-repeat:repeat-x; background-position:0 100%; padding-bottom:5px;}
+  .item .name{margin-top:16px; font-weight:900; font-size:clamp(17px,1.8vw,19px); color:var(--brown-2);}
+  .item .name b{font-family:'Gabarito', sans-serif; font-weight:800; font-size:1.25em; color:var(--brown); margin-left:.4em;}
+  .item .desc{margin-top:14px; font-size:16px; line-height:1.95; text-align:left;}
+  .item .spec{margin-top:10px; font-size:14px; color:var(--brown-2); text-align:left;}
   .btn{
-    display:inline-flex; align-items:center; gap:14px; text-decoration:none;
-    background:var(--ink); color:var(--canvas); font-weight:700; font-size:16px;
-    padding:15px 26px; min-height:52px; transition:background .25s ease;
+    margin-top:26px; display:inline-flex; align-items:center; justify-content:center; gap:22px;
+    min-width:260px; min-height:60px; padding:0 34px; border-radius:999px;
+    color:var(--cream); font-weight:900; font-size:17px; text-decoration:none; transition:transform .25s ease, filter .25s ease;
   }
-  .btn:hover{background:var(--moss);}
-  .btn svg{width:16px; height:10px;}
-  .item .sub{font-size:14px; color:var(--ink-soft);}
-  .item .sub a{text-underline-offset:3px;}
+  .btn:hover{transform:translateY(-2px); filter:brightness(1.08);}
+  .btn i{width:0; height:0; border-top:7px solid transparent; border-bottom:7px solid transparent; border-left:11px solid var(--cream);}
+  .item .sub{margin-top:12px; font-size:14px; color:var(--brown-2);}
+  @media (min-width:880px){ .item .sub{margin-left:8px;} }
 
-  /* ===== night (Luminox) ===== */
-  .night{
-    background:linear-gradient(180deg, var(--canvas) 0, #6E6F62 90px, #232A26 260px, var(--night) 420px);
-    color:#E7EBE4; padding:300px 0 120px;
+  .divider{display:block; width:100%; height:70px; margin-top:60px;}
+
+  /* ===== night / LUMINOX ===== */
+  .night{position:relative; background:var(--night); color:var(--cream); text-align:center; padding:90px 16px 110px; overflow:hidden;}
+  .night-top{position:absolute; left:0; right:0; top:-1px; width:100%; height:80px;}
+  .night .stars{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .night .inner{position:relative; max-width:980px; margin:0 auto;}
+  .night .sec-en{color:var(--cream);}
+  .night .ja{margin-top:14px; font-weight:900; font-size:clamp(18px,2vw,22px); color:var(--lume);}
+  .night h2{margin-top:36px; font-weight:900; font-size:clamp(28px, 4.4vw, 46px); line-height:1.6;}
+  .night h2 span{color:var(--lume);}
+  .night p.body{margin-top:22px; font-size:clamp(16px,1.6vw,18px); line-height:2.05; color:#D4D2BE;}
+  .lm-card{
+    margin:52px auto 0; display:block; text-decoration:none; color:inherit; max-width:880px;
+    border-radius:32px; overflow:hidden; background:var(--night-2); box-shadow:0 0 0 6px var(--night), 0 0 0 8px #48523A;
   }
-  @media (min-width:880px){ .night{padding:380px 0 150px;} }
-  .night .time{font-family:'Saira Condensed', sans-serif; font-weight:600; font-size:18px; letter-spacing:.2em; color:var(--lume);}
-  .night h2{margin-top:16px; font-weight:900; font-size:clamp(34px, 7vw, 74px); line-height:1.32;}
-  .night h2 .lume{color:var(--lume);}
-  .night p.body{margin-top:30px; font-size:clamp(16px, 1.6vw, 18px); line-height:2.05; max-width:32em; color:#BFC7BF;}
-  .night-banner{
-    margin-top:56px; display:block; text-decoration:none; color:inherit;
-    border:1px solid #2E3833; background:var(--night-2);
-  }
-  @media (min-width:880px){ .night-banner{display:grid; grid-template-columns:1.35fr 1fr;} }
-  .night-banner .img{aspect-ratio:16/10; overflow:hidden;}
-  .night-banner .img img{width:100%; height:100%; object-fit:cover; transition:transform .8s ease;}
-  .night-banner:hover .img img{transform:scale(1.03);}
-  .night-banner .txt{padding:30px 24px 34px; display:flex; flex-direction:column; justify-content:center;}
-  @media (min-width:880px){ .night-banner .txt{padding:44px 48px;} }
-  .night-banner .en{font-family:'Saira Condensed', sans-serif; font-weight:700; font-size:34px; letter-spacing:.12em; line-height:1;}
-  .night-banner .ja{margin-top:12px; font-size:16px; color:#BFC7BF;}
-  .night-banner .go{
-    margin-top:28px; align-self:flex-start; display:inline-flex; align-items:center; gap:14px;
-    background:var(--lume); color:var(--night); font-weight:700; font-size:16px; padding:15px 26px; min-height:52px;
-  }
-  .night-banner .go svg{width:16px; height:10px;}
+  @media (min-width:880px){ .lm-card{display:grid; grid-template-columns:1.25fr 1fr; text-align:left;} }
+  .lm-card .img{aspect-ratio:16/10; overflow:hidden;}
+  .lm-card .img img{width:100%; height:100%; object-fit:cover; transition:transform .8s ease;}
+  .lm-card:hover .img img{transform:scale(1.04);}
+  .lm-card .txt{padding:28px 22px 34px; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+  @media (min-width:880px){ .lm-card .txt{align-items:flex-start; padding:36px 40px;} }
+  .lm-card .t{font-family:'Gabarito', sans-serif; font-weight:900; font-size:38px; letter-spacing:.08em; line-height:1;}
+  .lm-card .s{margin-top:12px; font-size:15px; color:#D4D2BE;}
+  .lm-card .btn{background:var(--lume); color:var(--night); min-width:240px;}
+  .lm-card .btn i{border-left-color:var(--night);}
 
   /* ===== footer ===== */
-  .end{background:var(--night); color:#9AA49C; padding:0 0 64px; font-size:13px; line-height:1.9;}
-  .end .wrap{border-top:1px solid #2A332E; padding-top:36px;}
-  .end a.back{display:inline-block; margin-bottom:22px; color:#E7EBE4; font-weight:700; font-size:15px; text-underline-offset:4px;}
+  .end{background:var(--night); color:#A9A792; padding:0 16px 56px; font-size:13px; line-height:1.9; text-align:center;}
+  .end .in{max-width:980px; margin:0 auto; border-top:1px dashed #48523A; padding-top:34px;}
+  .end a.back{display:inline-block; margin-bottom:18px; color:var(--cream); font-weight:900; font-size:15px; text-underline-offset:4px;}
 </style>
 </head>
 <body>
+
+<!-- イラスト部品 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-fir" viewBox="0 0 100 200"><path d="M50 0 L80 50 H64 L90 95 H70 L98 145 H58 V200 H42 V145 H2 L30 95 H10 L36 50 H20 Z"/></symbol>
+    <symbol id="i-pine" viewBox="0 0 60 200"><path d="M30 0 V200 M30 30 L8 52 M30 30 L52 52 M30 62 L4 88 M30 62 L56 88 M30 96 L2 124 M30 96 L58 124 M30 130 L6 156 M30 130 L54 156" fill="none" stroke-width="5" stroke-linecap="round" stroke="currentColor"/></symbol>
+    <symbol id="i-round" viewBox="0 0 100 160"><circle cx="50" cy="52" r="48"/><rect x="44" y="90" width="12" height="70" rx="3"/></symbol>
+    <symbol id="i-mt" viewBox="0 0 200 100"><path d="M0 100 L62 18 L92 56 L122 22 L200 100 Z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 100 100"><path d="M10 90 C10 40 40 10 92 8 C90 60 60 90 10 90 Z"/><path d="M14 86 L70 30" fill="none" stroke="#5D6739" stroke-width="4" stroke-linecap="round"/></symbol>
+    <symbol id="i-tent" viewBox="0 0 160 110"><path d="M80 4 L156 106 H4 Z"/><path d="M80 40 L104 106 H56 Z" fill="#5D6739"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 100 110"><path d="M50 4 C66 30 78 40 74 64 C72 80 62 88 50 88 C38 88 26 80 26 64 C26 50 36 44 40 30 C46 42 50 46 54 40 C58 30 54 18 50 4 Z"/><path d="M8 104 L92 84 M8 84 L92 104" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></symbol>
+    <symbol id="i-twig" viewBox="0 0 64 44"><path d="M8 42 V6 M20 42 V12 M32 42 V2 M44 42 V12 M56 42 V6 M8 18 L2 10 M20 24 L28 16 M32 16 L38 8 M44 26 L36 18 M56 20 L62 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
 
 <header class="topbar">
   <a class="shop" href="https://www.rakuten.co.jp/7ple/">腕時計のななぷれ select shop</a>
@@ -189,196 +246,239 @@
 
 <main>
 
-  <!-- FV -->
+  <!-- ===== FV ===== -->
   <section class="fv">
-    <div class="wrap fv-grid">
-      <div class="fv-head">
-        <span class="fv-kicker">外遊びのコンパクトバッグ特集</span>
-        <h1 class="fv-title">手ぶらに<br>近い、<br><span class="soft">外遊び。</span></h1>
-      </div>
-      <p class="fv-lead">テントを張ったら、<br>大きな荷物は置いていく。<br>スマホと鍵と、ちょっとの小物だけ<br>身につけて歩く。<br>キャンプ中ずっと着けていられる、<br>小さなバッグを集めました。</p>
-      <div class="fv-photos">
-        <figure class="p1"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48262-smdb-a.jpg" alt="パタゴニア アトムスリング8を背負った様子"></figure>
-        <figure class="p2"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/49282-blk-a.jpg" alt="パタゴニア ブラックホール・ウエストパックを斜めがけした様子"></figure>
-        <figure class="p3"><img src="https://image.rakuten.co.jp/7ple/cabinet/columbia/2094541-010-a.jpg" alt="コロンビア ヒップバッグを斜めがけした様子"></figure>
-      </div>
+    <svg class="fv-illust" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <use href="#i-fir" class="s" x="-20" y="80" width="160" height="320"/>
+      <use href="#i-fir" class="s" x="100" y="300" width="110" height="220"/>
+      <use href="#i-round" class="s" x="330" y="330" width="120" height="190"/>
+      <use href="#i-leaf" class="s" x="470" y="200" width="80" height="80"/>
+      <use href="#i-mt" class="s" x="560" y="430" width="300" height="150"/>
+      <use href="#i-tent" class="s" x="900" y="210" width="160" height="110"/>
+      <use href="#i-fire" class="s" x="640" y="120" width="70" height="78" style="color:var(--olive-sh)"/>
+      <use href="#i-pine" x="1060" y="420" width="70" height="230" style="color:var(--olive-sh)"/>
+      <use href="#i-fir" class="s" x="1300" y="60" width="150" height="300"/>
+      <use href="#i-round" class="s" x="1180" y="560" width="100" height="160"/>
+      <use href="#i-leaf" class="s" x="40" y="590" width="110" height="110"/>
+      <use href="#i-twig" x="820" y="40" width="90" height="62" style="color:var(--olive-sh)"/>
+      <use href="#i-pine" x="250" y="40" width="54" height="180" style="color:var(--olive-sh)"/>
+    </svg>
+
+    <figure class="bubble-photo b1 float"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48262-smdb-a.jpg" alt="パタゴニア アトムスリング8"></figure>
+    <figure class="bubble-photo b2 float d2"><img src="https://image.rakuten.co.jp/7ple/cabinet/fjallraven/f23796-a.jpg" alt="フェールラーベン カンケン ヒップパック" style="object-position:85% 60%"></figure>
+    <figure class="bubble-photo b3 float d3"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/49282-blk-a.jpg" alt="パタゴニア ブラックホール・ウエストパック" style="object-position:60% 70%"></figure>
+    <figure class="bubble-photo b4 float d4"><img src="https://image.rakuten.co.jp/7ple/cabinet/columbia/2094541-010-a.jpg" alt="コロンビア ヒップバッグ" style="object-position:55% 62%"></figure>
+    <figure class="bubble-photo b5 float d2"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt7/wq00052840_1.jpg" alt="ザ・ノースフェイス ボレアリス スリング"></figure>
+
+    <div class="hill" aria-hidden="true"></div>
+    <div class="fv-copy">
+      <p class="en">COMPACT BAG for OUTDOOR</p>
+      <h1>手ぶらに近い、<br class="sp">外遊び。</h1>
+      <p class="sub">キャンプ中も身軽なバッグ特集</p>
     </div>
   </section>
 
-  <!-- statement -->
-  <section class="statement">
-    <div class="wrap">
-      <p class="label reveal">今回選んだ7つのバッグ</p>
-      <h2 class="big reveal">いちばん重くても、<br><span class="num">340</span>g。</h2>
-      <p class="body reveal">350mlの缶ジュース1本より<br>軽いバッグだけを選びました。<br>設営で動き回るときも、<br class="sp">焚き火の前に座るときも、<br>着けていることを忘れるくらいの軽さです。</p>
-      <div class="compare reveal" aria-label="重さの比較">
-        <div class="compare-row can"><span>缶ジュース1本</span><div class="compare-bar"><span style="width:100%"></span></div><span class="g">約370g</span></div>
-        <div class="compare-row"><span>いちばん重いもの</span><div class="compare-bar"><span style="width:92%"></span></div><span class="g">340g</span></div>
-        <div class="compare-row"><span>いちばん軽いもの</span><div class="compare-bar"><span style="width:36.5%"></span></div><span class="g">135g</span></div>
-      </div>
-      <p class="compare-note reveal">※缶ジュースは350ml缶の中身と缶を合わせたおおよその重さです。</p>
+  <!-- ===== intro ===== -->
+  <section class="intro">
+    <p class="reveal">テントを張ったら、<br class="sp">大きな荷物は置いていく。<br>スマホと鍵と、ちょっとの小物だけ<br class="sp">身につけて歩く。<br>キャンプ中ずっと着けていられる、<br class="sp">小さなバッグを集めました。</p>
+    <div class="weight-badge dots-cream pop">
+      <span class="s1">どれも</span>
+      <span class="s2">340<small>g</small></span>
+      <span class="s3">以下！<br>缶ジュース1本より軽い</span>
     </div>
   </section>
 
-  <!-- list -->
-  <section class="wrap">
-    <div class="list-head">
-      <h2 class="reveal">軽い順に、<br>並べました。</h2>
-      <p class="reveal">数字はバッグ本体の重さ（約）です。<br>持ち物の量に合わせて選んでください。</p>
+  <!-- ===== LINE UP ===== -->
+  <section class="lineup">
+    <svg class="ico" viewBox="0 0 64 44" aria-hidden="true" style="color:var(--cream-2)"><use href="#i-twig"/></svg>
+    <h2 class="sec-en reveal">LINE UP</h2>
+    <p class="lead reveal"><span>身軽なバッグを着けて、</span><br><span>外遊びへ出かけよう！</span></p>
+    <nav class="tabs">
+      <a class="tab reveal" href="#hip">
+        <span class="card dots-cream"><span class="t">HIP BAG</span><span class="j">腰に巻く</span><span class="img"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48580-blk-a.jpg" alt="" style="object-position:50% 72%"></span></span>
+        <span class="arrow"></span>
+      </a>
+      <a class="tab reveal" href="#sling">
+        <span class="card dots-cream"><span class="t">SLING BAG</span><span class="j">斜めにかける</span><span class="img"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48262-smdb-a.jpg" alt="" style="object-position:50% 65%"></span></span>
+        <span class="arrow"></span>
+      </a>
+      <a class="tab reveal" href="#watch">
+        <span class="card dots-cream"><span class="t">WATCH</span><span class="j">夜は光る時計</span><span class="img"><img src="https://image.rakuten.co.jp/nanaple/cabinet/tokusyu/lm-topimg-pc.jpg" alt="" style="object-position:48% 40%"></span></span>
+        <span class="arrow"></span>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ===== HIP BAG ===== -->
+  <section class="sec" id="hip">
+    <div class="sec-head">
+      <h2 class="sec-en reveal">HIP BAG</h2>
+      <p class="ja reveal"><svg viewBox="0 0 100 100" aria-hidden="true" style="fill:var(--olive)"><use href="#i-leaf"/></svg>腰に巻くバッグ<svg viewBox="0 0 100 100" aria-hidden="true" style="fill:var(--olive); transform:scaleX(-1)"><use href="#i-leaf"/></svg></p>
+      <p class="hint reveal">ペグ打ちや薪拾いで、かがんでも邪魔になりにくい</p>
     </div>
 
-    <div class="scale">
+    <div class="items">
 
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>135</b><small>g</small></div>
-          <div class="tick"><span style="width:39.7%"></span></div>
-          <p class="meta">容量 2L<br>約12×18×9cm</p>
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">01</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/f23796/"><img src="https://image.rakuten.co.jp/7ple/cabinet/fjallraven/f23796-a.jpg" alt="フェールラーベン カンケン ヒップパック" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">135<small>g</small></span></span>
+          <div class="notes"><span class="note">7色から<br>選べる</span><span class="note r">腰巻き・斜めがけの<br>2WAY</span></div>
         </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/f23796/"><img src="https://image.rakuten.co.jp/7ple/cabinet/fjallraven/f23796-a.jpg" alt="フェールラーベン カンケン ヒップパック" loading="lazy"></a>
-        <div>
-          <p class="brand">Fjällräven</p>
-          <h3>カンケン ヒップパック</h3>
-          <p class="catch">財布とスマホと鍵。<br>それだけで出かける散歩に。</p>
-          <p class="desc">腰に巻いても、斜めがけでも使える2WAY。7色あるので、家族で色違いにすると混ざらずに済みます。</p>
-          <div class="foot">
-            <p class="price">7,500<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/f23796/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          </div>
+        <div class="body reveal">
+          <p class="brand">FJÄLLRÄVEN</p>
+          <h3><span>家族で色違いにしたい！</span><br><span>財布とスマホが入るヒップパック</span></h3>
+          <p class="name">カンケン ヒップパック<b>¥7,500</b></p>
+          <p class="desc">財布とスマホと鍵だけ持って、ふらっと出かける散歩に。7色あるので、色違いにすれば家族のバッグが混ざりません。</p>
+          <p class="spec">容量 2L ／ 約12×18×9cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/f23796/">詳細はこちら<i></i></a>
         </div>
       </article>
 
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>170</b><small>g</small></div>
-          <div class="tick"><span style="width:50%"></span></div>
-          <p class="meta">容量 1L<br>約12.1×21.1×8.1cm</p>
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">02</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/2094541-010/"><img src="https://image.rakuten.co.jp/7ple/cabinet/columbia/2094541-010-a.jpg" alt="コロンビア ヒップバッグ" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">170<small>g</small></span></span>
+          <div class="notes"><span class="note">今回いちばん<br>小さい1L</span><span class="note r">フリースの<br>プルオーバーがヒント</span></div>
         </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/2094541-010/"><img src="https://image.rakuten.co.jp/7ple/cabinet/columbia/2094541-010-a.jpg" alt="コロンビア ヒップバッグ" loading="lazy"></a>
-        <div>
-          <p class="brand">Columbia</p>
-          <h3>ヒップバッグ</h3>
-          <p class="catch">ポケットの代わりに、<br>ひとつ着けておく。</p>
-          <p class="desc">今回いちばん小さい1L。フリースのプルオーバーをヒントにしたデザインで、アウトドアの服装によくなじみます。</p>
-          <div class="foot">
-            <p class="price">12,800<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/2094541-010/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          </div>
+        <div class="body reveal">
+          <p class="brand">COLUMBIA</p>
+          <h3><span>ポケット代わりに着けておく！</span><br><span>いちばん小さなヒップバッグ</span></h3>
+          <p class="name">ヒップバッグ<b>¥12,800</b></p>
+          <p class="desc">容量1Lのミニサイズ。クラシックなフリースのプルオーバーをヒントにしたデザインで、アウトドアの服装によくなじみます。</p>
+          <p class="spec">容量 1L ／ 約12.1×21.1×8.1cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/2094541-010/">詳細はこちら<i></i></a>
         </div>
       </article>
 
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>240</b><small>g</small></div>
-          <div class="tick"><span style="width:70.6%"></span></div>
-          <p class="meta">容量 5L<br>約27×16×9cm</p>
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">03</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/48580-blk/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48580-blk-a.jpg" alt="パタゴニア フィールドスミス・ヒップパック" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">240<small>g</small></span></span>
+          <div class="notes"><span class="note">オーガニック<br>コットン100％</span><span class="note r">腰巻き・斜めがけの<br>2WAY</span></div>
         </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/48580-blk/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48580-blk-a.jpg" alt="パタゴニア フィールドスミス・ヒップパック" loading="lazy"></a>
-        <div>
-          <p class="brand">Patagonia</p>
-          <h3>フィールドスミス・<br class="sp">ヒップパック 5L</h3>
-          <p class="catch">設営中は腰に、<br>散歩は斜めがけに。</p>
-          <p class="desc">オーガニックコットン100％。使い込むほど風合いが出る、キャンバス地のような質感です。2WAYで着け方を変えられます。</p>
-          <div class="foot">
-            <p class="price">10,480<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/48580-blk/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          </div>
+        <div class="body reveal">
+          <p class="brand">PATAGONIA</p>
+          <h3><span>設営中は腰に、散歩は斜めに！</span><br><span>コットンのヒップパック</span></h3>
+          <p class="name">フィールドスミス・ヒップパック 5L<b>¥10,480</b></p>
+          <p class="desc">使い込むほど風合いが出る、キャンバス地のような質感。着け方を変えられるので、テント設営から散歩まで1つで通せます。</p>
+          <p class="spec">容量 5L ／ 約27×16×9cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/48580-blk/">詳細はこちら<i></i></a>
         </div>
       </article>
 
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>265</b><small>g</small></div>
-          <div class="tick"><span style="width:77.9%"></span></div>
-          <p class="meta">マチ 約4cm<br>約25×16×4cm</p>
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">04</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/49282-blk/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/49282-blk-a.jpg" alt="パタゴニア ブラックホール・ウエストパック" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">315<small>g</small></span></span>
+          <div class="notes"><span class="note">横幅約41cmの<br>ゆとりある形</span><span class="note r">リサイクル<br>ポリエステル100％</span></div>
         </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/wq00054244/"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt4/wq00054244_1.jpg" alt="ザ・ノースフェイス バークレー フィールドバッグ" loading="lazy"></a>
-        <div>
-          <p class="brand">The North Face</p>
-          <h3>バークレー フィールドバッグ</h3>
-          <p class="catch">体に沿う薄さで、<br>かがんでも邪魔にならない。</p>
-          <p class="desc">マチは約4cm。サコッシュのように軽く掛けられます。ペグを打つときや薪を拾うとき、前に回してもかさばりません。</p>
-          <div class="foot">
-            <p class="price">8,970<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/wq00054244/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>280</b><small>g</small></div>
-          <div class="tick"><span style="width:82.4%"></span></div>
-          <p class="meta">約33×19×9cm<br>ポケット5か所</p>
-        </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/wq00052840/"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt7/wq00052840_1.jpg" alt="ザ・ノースフェイス ボレアリス スリング" loading="lazy"></a>
-        <div>
-          <p class="brand">The North Face</p>
-          <h3>ボレアリス スリング</h3>
-          <p class="catch">車のキーを、<br>もう探さなくていい。</p>
-          <p class="desc">内側にキーフック付き。外側にファスナーポケット2つとサイドポケット、内側にもポケットが2つあり、小物の定位置を決められます。</p>
-          <div class="foot">
-            <p class="price">15,070<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/wq00052840/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>315</b><small>g</small></div>
-          <div class="tick"><span style="width:92.6%"></span></div>
-          <p class="meta">容量 5L<br>約41×17×11cm</p>
-        </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/49282-blk/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/49282-blk-a.jpg" alt="パタゴニア ブラックホール・ウエストパック" loading="lazy"></a>
-        <div>
-          <p class="brand">Patagonia</p>
-          <h3>ブラックホール・<br class="sp">ウエストパック 5L</h3>
-          <p class="catch">ヘッドライトも手袋も、<br>まとめて腰まわりに。</p>
-          <p class="desc">横幅約41cmのゆとりある形。リサイクルポリエステル100％のタフな生地で、地面に置いても気兼ねなく使えます。</p>
-          <div class="foot">
-            <p class="price">12,980<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/49282-blk/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="item reveal">
-        <div>
-          <div class="weight"><b>340</b><small>g</small></div>
-          <div class="tick"><span style="width:100%"></span></div>
-          <p class="meta">容量 8L<br>約34×23×8cm</p>
-        </div>
-        <a class="photo" href="https://item.rakuten.co.jp/7ple/48262-smdb/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48262-smdb-a.jpg" alt="パタゴニア アトムスリング8 スモルダーブルー" loading="lazy"></a>
-        <div>
-          <p class="brand">Patagonia</p>
-          <h3>アトムスリング 8L</h3>
-          <p class="catch">夕方の冷え込みに、<br>薄手の上着をもう1枚。</p>
-          <p class="desc">今回いちばん大きい8L。小物に加えて、たたんだ薄手の上着も入れやすい容量です。片方の肩に掛けて、さっと前に回せる形です。</p>
-          <div class="foot">
-            <p class="price">10,480<em>円</em></p>
-            <a class="btn" href="https://item.rakuten.co.jp/7ple/48262-smdb/">商品を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-            <p class="sub">ブラックは<a href="https://item.rakuten.co.jp/7ple/48262-blk/">こちら（10,870円）</a></p>
-          </div>
+        <div class="body reveal">
+          <p class="brand">PATAGONIA</p>
+          <h3><span>ヘッドライトも手袋も！</span><br><span>たっぷり入るウエストパック</span></h3>
+          <p class="name">ブラックホール・ウエストパック 5L<b>¥12,980</b></p>
+          <p class="desc">腰まわりのバッグでは大きめの5L。タフな生地なので、地面に置いても気兼ねなく使えます。</p>
+          <p class="spec">容量 5L ／ 約41×17×11cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/49282-blk/">詳細はこちら<i></i></a>
         </div>
       </article>
 
     </div>
   </section>
 
-  <!-- night / Luminox -->
-  <section class="night">
-    <div class="wrap">
-      <p class="time reveal">AFTER SUNSET</p>
-      <h2 class="reveal">日が落ちたら、<br>手元は<span class="lume">光る</span><br class="sp">1本に。</h2>
-      <p class="body reveal">荷物を減らしたぶん、<br class="sp">身につけるものは頼れるものを。<br>ルミノックスは、暗いテントサイトでも<br class="sp">ひと目で時刻が読める腕時計です。<br>外遊びの相棒になるモデルを、<br class="sp">シーン別に紹介しています。</p>
-      <a class="night-banner reveal" href="https://www.rakuten.ne.jp/gold/7ple/tokusyu/luminox.html">
-        <div class="img"><img src="https://image.rakuten.co.jp/nanaple/cabinet/tokusyu/lm-topimg-pc.jpg" alt="外遊びの相棒なら、ルミノックス" loading="lazy"></div>
-        <div class="txt">
-          <p class="en">LUMINOX</p>
-          <p class="ja">外遊びの相棒なら、ルミノックス。<br>釣り・キャンプ・バイク・街使い</p>
-          <span class="go">ルミノックス特集を見る<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+  <!-- ===== SLING BAG ===== -->
+  <section class="sec" id="sling">
+    <div class="sec-head">
+      <h2 class="sec-en reveal">SLING BAG</h2>
+      <p class="ja reveal"><svg viewBox="0 0 100 100" aria-hidden="true" style="fill:var(--olive)"><use href="#i-leaf"/></svg>斜めにかけるバッグ<svg viewBox="0 0 100 100" aria-hidden="true" style="fill:var(--olive); transform:scaleX(-1)"><use href="#i-leaf"/></svg></p>
+      <p class="hint reveal">背中に回せば、両手が空く</p>
+    </div>
+
+    <div class="items">
+
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">05</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/wq00054244/"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt4/wq00054244_1.jpg" alt="ザ・ノースフェイス バークレー フィールドバッグ" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">265<small>g</small></span></span>
+          <div class="notes"><span class="note">マチ約4cmの<br>薄型</span><span class="note r">ストラップは<br>長さ調節OK</span></div>
         </div>
+        <div class="body reveal">
+          <p class="brand">THE NORTH FACE</p>
+          <h3><span>かがんでも邪魔にならない！</span><br><span>体に沿う薄型ショルダー</span></h3>
+          <p class="name">バークレー フィールドバッグ<b>¥8,970</b></p>
+          <p class="desc">サコッシュのように軽く掛けられる薄さ。ペグを打つときや薪を拾うとき、前に回してもかさばりません。</p>
+          <p class="spec">約25×16×4cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/wq00054244/">詳細はこちら<i></i></a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">06</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/wq00052840/"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt7/wq00052840_1.jpg" alt="ザ・ノースフェイス ボレアリス スリング" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">280<small>g</small></span></span>
+          <div class="notes"><span class="note">キーフック<br>付き</span><span class="note r">ポケットは<br>5か所</span></div>
+        </div>
+        <div class="body reveal">
+          <p class="brand">THE NORTH FACE</p>
+          <h3><span>車のキーを探さない！</span><br><span>小物の定位置が決まるスリング</span></h3>
+          <p class="name">ボレアリス スリング<b>¥15,070</b></p>
+          <p class="desc">内側にキーフック。外側にファスナーポケット2つとサイドポケット、内側にもポケットが2つあり、どこに何を入れるか決めておけます。</p>
+          <p class="spec">約33×19×9cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/wq00052840/">詳細はこちら<i></i></a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="visual reveal">
+          <p class="item-no"><span class="k">ITEM</span><span class="n">07</span></p>
+          <a class="photo" href="https://item.rakuten.co.jp/7ple/48262-smdb/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48262-smdb-a.jpg" alt="パタゴニア アトムスリング8 スモルダーブルー" loading="lazy"></a>
+          <span class="wt dots-olive pop"><span class="w1">重さ約</span><span class="w2">340<small>g</small></span></span>
+          <div class="notes"><span class="note">今回いちばん<br>大きい8L</span><span class="note r">ブラックも<br>あります</span></div>
+        </div>
+        <div class="body reveal">
+          <p class="brand">PATAGONIA</p>
+          <h3><span>夕方の冷え込みに！</span><br><span>上着も入れやすい8Lスリング</span></h3>
+          <p class="name">アトムスリング 8L<b>¥10,480</b></p>
+          <p class="desc">小物に加えて、たたんだ薄手の上着も入れやすい容量。片方の肩に掛けて、さっと前に回せる形です。</p>
+          <p class="spec">容量 8L ／ 約34×23×8cm</p>
+          <a class="btn dots-olive" href="https://item.rakuten.co.jp/7ple/48262-smdb/">詳細はこちら<i></i></a>
+          <p class="sub">ブラックは<a href="https://item.rakuten.co.jp/7ple/48262-blk/">こちら（¥10,870）</a></p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== WATCH / LUMINOX ===== -->
+  <section class="night" id="watch">
+    <svg class="night-top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 H1440 V20 C1080 80 360 80 0 20 Z" fill="#F3EBD0"/></svg>
+    <svg class="stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="#F3EBD0" opacity=".55">
+        <circle cx="120" cy="160" r="2.4"/><circle cx="260" cy="250" r="1.6"/><circle cx="420" cy="130" r="2"/><circle cx="980" cy="150" r="2.2"/>
+        <circle cx="1120" cy="260" r="1.6"/><circle cx="1320" cy="140" r="2.6"/><circle cx="80" cy="420" r="1.6"/><circle cx="1380" cy="460" r="1.8"/>
+        <circle cx="200" cy="640" r="1.6"/><circle cx="1260" cy="700" r="2"/>
+      </g>
+      <path d="M1240 200 a46 46 0 1 0 40 -66 a38 38 0 1 1 -40 66 Z" fill="#E7DDB8" opacity=".85"/>
+      <g fill="#2E3522"><use href="#i-fir" x="-30" y="620" width="150" height="300"/><use href="#i-fir" x="90" y="720" width="100" height="200"/><use href="#i-fir" x="1300" y="640" width="160" height="300"/><use href="#i-tent" x="1160" y="800" width="140" height="96"/></g>
+    </svg>
+    <div class="inner">
+      <h2 class="sec-en reveal">WATCH</h2>
+      <p class="ja reveal">日が落ちたら</p>
+      <h2 class="reveal">荷物を減らしたら、<br class="sp">手元は<span>光る</span>1本に。</h2>
+      <p class="body reveal">ルミノックスは、暗いテントサイトでも<br class="sp">ひと目で時刻が読める腕時計。<br>外遊びの相棒になるモデルを、<br class="sp">シーン別に紹介しています。</p>
+      <a class="lm-card reveal" href="https://www.rakuten.ne.jp/gold/7ple/tokusyu/luminox.html">
+        <span class="img"><img src="https://image.rakuten.co.jp/nanaple/cabinet/tokusyu/lm-topimg-pc.jpg" alt="外遊びの相棒なら、ルミノックス" loading="lazy"></span>
+        <span class="txt">
+          <span class="t">LUMINOX</span>
+          <span class="s">外遊びの相棒なら、ルミノックス。<br>釣り・キャンプ・バイク・街使い</span>
+          <span class="btn">特集を見る<i></i></span>
+        </span>
       </a>
     </div>
   </section>
@@ -386,19 +486,19 @@
 </main>
 
 <footer class="end">
-  <div class="wrap">
+  <div class="in">
     <a class="back" href="https://www.rakuten.co.jp/7ple/">ななぷれ select shop トップへ</a>
-    <p>※掲載の価格・在庫は2026年10月10日時点のものです。最新の情報は各商品ページでご確認ください。<br>※重さ・サイズ・容量はいずれも約の値です。</p>
+    <p>※掲載の価格・在庫は2026年10月10日時点のものです。最新の情報は各商品ページでご確認ください。<br>※重さ・サイズ・容量はいずれも約の値です。缶ジュースは350ml缶（約370g）との比較です。</p>
   </div>
 </footer>
 
 <script>
   (function(){
-    var els = document.querySelectorAll('.reveal');
+    var els = document.querySelectorAll('.reveal, .pop');
     if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('is-visible');}); return; }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-visible'); io.unobserve(en.target); } });
-    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
     els.forEach(function(e){ io.observe(e); });
   })();
 </script>
