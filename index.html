@@ -71,7 +71,7 @@
   .fv{position:relative; background:var(--sky); overflow:hidden;}
   .fv-copy{position:relative; z-index:3; padding:26px 20px 0;}
   @media (min-width:880px){ .fv-copy{padding:56px 0 0 8%; max-width:960px;} }
-  .fv-copy .label{display:inline-block; font-family:'Outfit', sans-serif; font-weight:800; font-size:14px; letter-spacing:.1em; color:var(--paper); background:var(--orange); padding:4px 12px; border-radius:6px; transform:rotate(-2deg);}
+  .fv-copy .label{display:inline-block; font-family:'Outfit', sans-serif; font-weight:800; font-size:14px; letter-spacing:.1em; color:var(--paper); background:var(--orange); padding:4px 12px; border-radius:6px;}
   .fv-copy h1{margin-top:18px; font-family:'Noto Sans JP', sans-serif; font-weight:900; font-size:clamp(36px, 5.2vw, 74px); line-height:1.3; color:var(--navy); letter-spacing:.01em;}
   .fv-copy h1 em{font-style:normal; color:var(--orange);}
   .fv-copy .sub{margin-top:16px; font-weight:900; font-size:clamp(16px,1.8vw,20px); color:var(--teal);}
@@ -83,7 +83,7 @@
   @media (min-width:880px){ .sun{width:190px; height:190px; right:auto; left:54%; top:160px;} }
   .arch{
     position:absolute; z-index:2; overflow:hidden; background:var(--paper);
-    border-radius:999px 999px 14px 14px; border:4px solid var(--navy);
+    border-radius:20px; border:4px solid var(--paper);
   }
   .arch img{width:100%; height:100%; object-fit:cover;}
   .arch.a1{width:108px; height:146px; left:4%;  bottom:64px;}
@@ -121,15 +121,14 @@
   .tags{margin:52px auto 0; max-width:960px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
   @media (min-width:880px){ .tags{gap:32px;} }
   .ltag{position:relative; display:block; text-decoration:none; color:var(--navy); transition:transform .25s ease;}
-  .ltag:nth-child(1){rotate:-2.5deg;} .ltag:nth-child(3){rotate:2.5deg;}
-  .ltag.is-visible:hover{rotate:0deg; transform:translateY(-6px);}
+  .ltag.is-visible:hover{transform:translateY(-6px);}
   .ltag .card{
     display:flex; flex-direction:column; align-items:center; gap:8px;
     background:#fff; border:3px solid var(--navy); border-radius:16px; padding:30px 8px 14px;
   }
   @media (min-width:880px){ .ltag .card{padding:44px 18px 22px; border-radius:22px;} }
   .ltag .card::before{content:""; position:absolute; top:12px; left:50%; width:14px; height:14px; margin-left:-7px; border-radius:50%; border:3px solid var(--navy); background:var(--paper);}
-  .ltag .img{width:100%; aspect-ratio:3/3.6; overflow:hidden; border-radius:999px 999px 10px 10px; background:var(--sky);}
+  .ltag .img{width:100%; aspect-ratio:1/1; overflow:hidden; border-radius:12px; background:var(--sky);}
   .ltag .img img{width:100%; height:100%; object-fit:cover;}
   .ltag .t{margin-top:4px; font-family:'Outfit', sans-serif; font-weight:800; font-size:clamp(15px,2.2vw,28px); line-height:1.05;}
   .ltag .j{font-weight:900; font-size:clamp(11px,1.3vw,15px); color:var(--orange); line-height:1.3;}
@@ -153,28 +152,24 @@
     .item:nth-child(even) .visual{order:2;}
   }
   .item .visual{position:relative; max-width:440px; margin:0 auto; width:100%;}
-  .item-no{display:flex; align-items:baseline; gap:6px; margin:0 0 12px 4px; color:var(--navy); line-height:.9;}
+  .item-no{display:flex; align-items:baseline; gap:6px; margin:0 0 12px 4px; color:var(--orange); line-height:.9;}
   .item-no .k{font-family:'Outfit', sans-serif; font-weight:800; font-size:22px;}
   .item-no .n{font-family:'Outfit', sans-serif; font-weight:800; font-size:80px; letter-spacing:-.03em;}
-  .item-no .n::after{content:""; display:inline-block; width:12px; height:12px; border-radius:50%; background:var(--orange); margin-left:4px;}
-  .item .photo{display:block; overflow:hidden; background:#fff; aspect-ratio:1/1.12; border-radius:999px 999px 18px 18px; border:4px solid var(--navy);}
+    .item .photo{display:block; overflow:hidden; background:#fff; aspect-ratio:1/1; border-radius:24px;}
   .item .photo img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
   .item .photo:hover img{transform:scale(1.04);}
-  .item .wt{position:absolute; right:-4px; top:66px; z-index:2; width:96px;}
-  @media (min-width:880px){ .item .wt{right:-30px; width:108px;} }
-  .item .wt .string{display:block; width:2px; height:24px; margin:0 auto; background:var(--navy);}
-  .item .wt .b{
-    display:flex; flex-direction:column; align-items:center; background:var(--orange); color:#fff;
-    padding:20px 6px 12px; border-radius:10px; position:relative;
-    clip-path:polygon(25% 0, 75% 0, 100% 18%, 100% 100%, 0 100%, 0 18%);
+  .item .wt{
+    position:absolute; right:-6px; top:-22px; z-index:2; width:100px; height:100px; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:var(--orange); color:#fff; transform:rotate(8deg);
   }
-  .item .wt .b::before{content:""; position:absolute; top:7px; left:50%; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:var(--paper);}
+  @media (min-width:880px){ .item .wt{right:-30px; top:-30px; width:116px; height:116px;} }
   .item .wt .w1{font-size:11px; font-weight:900; line-height:1.2;}
   .item .wt .w2{font-family:'Outfit', sans-serif; font-weight:800; font-size:34px; line-height:1;}
   .item .wt .w2 small{font-size:16px;}
   .labels{position:absolute; left:-8px; bottom:-22px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; z-index:2;}
   .lbl{background:var(--mustard); color:var(--navy); font-weight:900; font-size:14px; line-height:1.45; padding:7px 14px; border:2px solid var(--navy); border-radius:6px;}
-  .lbl:nth-child(1){transform:rotate(-3deg);} .lbl:nth-child(2){transform:rotate(2deg); margin-left:16px; background:#fff;}
+  .lbl:nth-child(2){background:#fff;}
   @media (min-width:880px){ .lbl{font-size:15px; padding:8px 16px;} .labels{left:-26px;} }
 
   .item .body{margin-top:58px;}
@@ -265,7 +260,7 @@
   <!-- ===== intro ===== -->
   <section class="intro">
     <p class="reveal">テントを張ったら、<br class="sp">大きな荷物は置いていく。<br>スマホと鍵と、ちょっとの小物だけ<br class="sp">身につけて歩く。<br>キャンプ中ずっと着けていられる、<br class="sp">小さめのボディバッグ・<br class="sp">ウエストバッグを集めました。</p>
-    <div class="tagbig swing" aria-label="どれも340g以下。缶ジュース1本より軽い">
+    <div class="tagbig" aria-label="どれも340g以下。缶ジュース1本より軽い">
       <span class="string"></span>
       <div class="body"><span class="hole"></span>
         <p class="s1">今回のバッグは、どれも</p>
@@ -299,7 +294,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">01</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/f23796/"><img src="https://image.rakuten.co.jp/7ple/cabinet/fjallraven/f23796-a.jpg" alt="フェールラーベン カンケン ヒップパック" loading="lazy" style="object-position:70% 50%"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">135<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">135<small>g</small></span></div>
           <div class="labels"><span class="lbl">7色から選べる</span><span class="lbl">腰巻き・斜めがけの2WAY</span></div>
         </div>
         <div class="body reveal">
@@ -316,7 +311,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">02</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/2094541-010/"><img src="https://image.rakuten.co.jp/7ple/cabinet/columbia/2094541-010-a.jpg" alt="コロンビア ヒップバッグ" loading="lazy"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">170<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">170<small>g</small></span></div>
           <div class="labels"><span class="lbl">今回いちばん小さい1L</span><span class="lbl">フリースがデザインのヒント</span></div>
         </div>
         <div class="body reveal">
@@ -333,7 +328,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">03</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/48580-blk/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48580-blk-a.jpg" alt="パタゴニア フィールドスミス・ヒップパック" loading="lazy"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">240<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">240<small>g</small></span></div>
           <div class="labels"><span class="lbl">オーガニックコットン100％</span><span class="lbl">腰巻き・斜めがけの2WAY</span></div>
         </div>
         <div class="body reveal">
@@ -350,7 +345,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">04</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/49282-blk/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/49282-blk-a.jpg" alt="パタゴニア ブラックホール・ウエストパック" loading="lazy"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">315<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">315<small>g</small></span></div>
           <div class="labels"><span class="lbl">横幅約41cmのゆとり</span><span class="lbl">リサイクルポリエステル100％</span></div>
         </div>
         <div class="body reveal">
@@ -379,7 +374,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">05</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/wq00054244/"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt4/wq00054244_1.jpg" alt="ザ・ノースフェイス バークレー フィールドバッグ" loading="lazy"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">265<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">265<small>g</small></span></div>
           <div class="labels"><span class="lbl">マチ約4cmの薄型</span><span class="lbl">ストラップは長さ調節OK</span></div>
         </div>
         <div class="body reveal">
@@ -396,7 +391,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">06</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/wq00052840/"><img src="https://image.rakuten.co.jp/7ple/cabinet/mt7/wq00052840_1.jpg" alt="ザ・ノースフェイス ボレアリス スリング" loading="lazy"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">280<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">280<small>g</small></span></div>
           <div class="labels"><span class="lbl">キーフック付き</span><span class="lbl">ポケットは5か所</span></div>
         </div>
         <div class="body reveal">
@@ -413,7 +408,7 @@
         <div class="visual reveal">
           <p class="item-no"><span class="k">No.</span><span class="n">07</span></p>
           <a class="photo" href="https://item.rakuten.co.jp/7ple/48262-smdb/"><img src="https://image.rakuten.co.jp/7ple/cabinet/patagonia/48262-smdb-a.jpg" alt="パタゴニア アトムスリング8 スモルダーブルー" loading="lazy"></a>
-          <div class="wt swing"><span class="string"></span><span class="b"><span class="w1">重さ約</span><span class="w2">340<small>g</small></span></span></div>
+          <div class="wt"><span class="w1">重さ約</span><span class="w2">340<small>g</small></span></div>
           <div class="labels"><span class="lbl">今回いちばん大きい8L</span><span class="lbl">ブラックもあります</span></div>
         </div>
         <div class="body reveal">
